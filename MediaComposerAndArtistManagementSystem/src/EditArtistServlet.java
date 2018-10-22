@@ -1,8 +1,7 @@
-package com.cg.project.admindetails;
+
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,42 +10,39 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.cg.project.beans.Artist_Master;
 import com.cg.project.beans.Composer_Master;
 import com.cg.project.daoservices.ManagementDAO;
 import com.cg.project.daoservices.ManagementDAOImpl;
 
-
-@WebServlet("/AddComposerServlet")
-public class AddComposerServlet extends HttpServlet {
+/**
+ * Servlet implementation class EditArtistServlet
+ */
+@WebServlet("/EditArtistServlet")
+public class EditArtistServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-   
-    public AddComposerServlet() {
-        super();        
+    
+    public EditArtistServlet() {
+        super();
+        // TODO Auto-generated constructor stub
     }
-
 	public void init(ServletConfig config) throws ServletException {
-		
+		// TODO Auto-generated method stub
 	}
-
 	public void destroy() {
-		
+		// TODO Auto-generated method stub
 	}
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Cookie[] cookie=request.getCookies();
 		int id = 0;
 		for(Cookie cookie1 : cookie)
 			id=Integer.parseInt(cookie1.getValue());
-		String composerName=request.getParameter("composer_Name"),
-				composerDOB=request.getParameter("composer_BornDate"),
-				composerDOD=request.getParameter("composer_DiedDate"),
-				composerCaeipi=request.getParameter("composer_CaeipiNumber"),
-				composerMusicSocietyID=request.getParameter("composer_MusicSocietyID");
-		Composer_Master composer=new Composer_Master(id, composerName, composerCaeipi, composerMusicSocietyID, composerDOB, composerDOD);
+		String artist_Name=request.getParameter("artist_Name");
+		String artist_DiedDate=request.getParameter("artist_DiedDate");
+		Artist_Master artist=new Artist_Master(id, artist_Name, artist_DiedDate);
 		ManagementDAO managementDAO= new ManagementDAOImpl();
-		composer=managementDAO.saveComposer(composer);
-		request.setAttribute("composer", composer);
-//		RequestDispatcher dispatcher = request.getRequestDispatcher(arg0)
+		managementDAO.updateArtist(artist);
+		request.setAttribute("artist", artist);
 	}
 
 }

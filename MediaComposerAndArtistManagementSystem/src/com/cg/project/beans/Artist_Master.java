@@ -1,5 +1,6 @@
 package com.cg.project.beans;
 import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,14 +14,15 @@ public class Artist_Master {
 	private int artist_ID;
 	private int created_By, updated_By;
 	private String artist_Name;
-	private Date artist_BornDate, artist_DiedDate, created_On, updated_On;
+	private Date artist_BornDate, created_On, updated_On;
+	String artist_DiedDate;
 	private boolean artist_DeletedFlag;
 	private char artist_Type;
 	public Artist_Master() {
 		super();
 	}
 	public Artist_Master(int artist_ID, int created_By, int updated_By,
-			String artist_Name, Date artist_BornDate, Date artist_DiedDate,
+			String artist_Name, Date artist_BornDate, String artist_DiedDate,
 			Date created_On, Date updated_On, boolean artist_DeletedFlag,
 			char artist_Type) {
 		super();
@@ -33,6 +35,21 @@ public class Artist_Master {
 		this.created_On = created_On;
 		this.updated_On = updated_On;
 		this.artist_DeletedFlag = artist_DeletedFlag;
+		this.artist_Type = artist_Type;
+	}
+	public Artist_Master(int updated_By, String artist_Name,String artist_DiedDate) {
+		super();
+		this.updated_By = updated_By;
+		this.artist_Name = artist_Name;
+		this.artist_DiedDate = artist_DiedDate;
+	}
+	public Artist_Master( int created_By, String artistName, String artistDOB,
+			String artistDOD, String artistType) {
+		super();
+		this.artist_ID = artist_ID;
+		this.artist_Name = artist_Name;
+		this.artist_BornDate = artist_BornDate;
+		this.artist_DiedDate = artist_DiedDate;
 		this.artist_Type = artist_Type;
 	}
 	public int getArtist_ID() {
@@ -65,10 +82,10 @@ public class Artist_Master {
 	public void setArtist_BornDate(Date artist_BornDate) {
 		this.artist_BornDate = artist_BornDate;
 	}
-	public Date getArtist_DiedDate() {
+	public String getArtist_DiedDate() {
 		return artist_DiedDate;
 	}
-	public void setArtist_DiedDate(Date artist_DiedDate) {
+	public void setArtist_DiedDate(String artist_DiedDate) {
 		this.artist_DiedDate = artist_DiedDate;
 	}
 	public Date getCreated_On() {

@@ -10,31 +10,37 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.cg.project.beans.Artist_Master;
 import com.cg.project.beans.Composer_Master;
 import com.cg.project.daoservices.ManagementDAO;
 import com.cg.project.daoservices.ManagementDAOImpl;
 
-@WebServlet("/SearchComposerServlet")
-public class SearchComposerServlet extends HttpServlet {
+/**
+ * Servlet implementation class SearchArtistServlet
+ */
+@WebServlet("/SearchArtistServlet")
+public class SearchArtistServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-   
-    public SearchComposerServlet() {
-        super();
-    }
+
+	public SearchArtistServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	public void init(ServletConfig config) throws ServletException {
+		// TODO Auto-generated method stub
 	}
 	public void destroy() {
+		// TODO Auto-generated method stub
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String composer_Name=request.getParameter("searchComposer");
+		String artist_Name=request.getParameter("searchArtist");
 		ManagementDAO managementDAO= new ManagementDAOImpl();
-		Composer_Master composer =managementDAO.findComposer(composer_Name);
-		if(composer!=null){
-			RequestDispatcher dispatcher=request.getRequestDispatcher("SearchComposerSuccessPage.jsp");
-			request.setAttribute("composer", composer);
+		Artist_Master artist =managementDAO.findArtist(artist_Name);
+		if(artist!=null){
+			RequestDispatcher dispatcher=request.getRequestDispatcher("SearchArtistSuccessPage.jsp");
+			request.setAttribute("artist", artist);
 			dispatcher.forward(request, response);
 		}
-		
-	}
 
+	}
 }

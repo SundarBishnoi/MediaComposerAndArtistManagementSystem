@@ -9,12 +9,11 @@
 <body>
 <div align="center">
 	${requestScope.errorMessage}<br>
-	Composer Name: ${requestScope.composer.composer_Name}<br>
-	Composer ID: ${requestScope.composer.composer_ID}<br>
-	Composer Date of Birth: ${requestScope.composer.composer_BornDate}<br>
-	Composer CAE ipi Number: ${requestScope.composer.composer_CaeipiNumber}<br> 
-	Composer Music Society ID: ${requestScope.composer.composer_MusicSocietyID}<br>
-	Composer Date of Death: ${requestScope.composer.composer_DiedDate}<br>
+	Artist Name: ${requestScope.artist.Artist_Name}<br>
+	Artist ID: ${requestScope.artist.artist_ID}<br>
+	Artist Date of Birth: ${requestScope.artist.artist_BornDate}<br>
+	Artist Date of Death: ${requestScope.artist.artist_DiedDate}<br>
+	Artist Type: ${requestScope.artist.artist_Type}<br>
 </div>
 </body>
 </html>

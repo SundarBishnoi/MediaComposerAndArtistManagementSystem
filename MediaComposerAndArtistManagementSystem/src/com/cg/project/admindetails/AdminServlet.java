@@ -23,7 +23,7 @@ public class AdminServlet extends HttpServlet {
 		Admin admin = new Admin(AdminId, password);
 		RequestDispatcher dispatcher;
 		if(admin.getAdminId().equals("SUNDAR") && admin.getPassword().equals("BISHNOI")){
-			dispatcher = request.getRequestDispatcher("AdminLoginSuccessPage.html");
+			dispatcher = request.getRequestDispatcher("AdminLoginSuccessPage.jsp");
 			request.setAttribute("admin", admin);
 			dispatcher.forward(request, response);
 		}

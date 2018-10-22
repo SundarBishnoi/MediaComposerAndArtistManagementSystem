@@ -9,21 +9,36 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 @Entity
+@NamedQueries({
+	@NamedQuery(name="getComposer", query="select c from Composer_Master c where c.composer_Name=:composer_Name")
+})
 public class Composer_Master {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int composer_ID;
 	private int created_By,updated_By;
-	private String composer_Name,composer_CaeipiNumber,composer_MusicSocietyID;
-	private Date composer_BornDate,composer_DiedDate,created_On,updated_On;
+	private String composer_Name,composer_CaeipiNumber,composer_MusicSocietyID,composer_BornDate,composer_DiedDate,created_On,updated_On;
 	private boolean composer_DeletedFlag;
 	public Composer_Master() {
 		super();
 	}
+	
+	public Composer_Master(int created_By, String composer_Name,
+			String composer_CaeipiNumber, String composer_MusicSocietyID,
+			String composer_BornDate, String composer_DiedDate) {
+		super();
+		this.created_By = created_By;
+		this.composer_Name = composer_Name;
+		this.composer_CaeipiNumber = composer_CaeipiNumber;
+		this.composer_MusicSocietyID = composer_MusicSocietyID;
+		this.composer_BornDate = composer_BornDate;
+		this.composer_DiedDate = composer_DiedDate;
+	}
+
 	public Composer_Master(int composer_ID, int created_By, int updated_By,
 			String composer_Name, String composer_CaeipiNumber,
-			String composer_MusicSocietyID, Date composer_BornDate,
-			Date composer_DiedDate, Date created_On, Date updated_On,
+			String composer_MusicSocietyID, String composer_BornDate,
+			String composer_DiedDate, String created_On, String updated_On,
 			boolean composer_DeletedFlag) {
 		super();
 		this.composer_ID = composer_ID;
@@ -38,6 +53,13 @@ public class Composer_Master {
 		this.updated_On = updated_On;
 		this.composer_DeletedFlag = composer_DeletedFlag;
 	}
+	public Composer_Master(int updated_By, String composer_Name, String composer_DiedDate) {
+		super();
+		this.updated_By = updated_By;
+		this.composer_Name = composer_Name;
+		this.composer_DiedDate = composer_DiedDate;
+	}
+
 	public int getComposer_ID() {
 		return composer_ID;
 	}
@@ -74,28 +96,28 @@ public class Composer_Master {
 	public void setComposer_MusicSocietyID(String composer_MusicSocietyID) {
 		this.composer_MusicSocietyID = composer_MusicSocietyID;
 	}
-	public Date getComposer_BornDate() {
+	public String getComposer_BornDate() {
 		return composer_BornDate;
 	}
-	public void setComposer_BornDate(Date composer_BornDate) {
+	public void setComposer_BornDate(String composer_BornDate) {
 		this.composer_BornDate = composer_BornDate;
 	}
-	public Date getComposer_DiedDate() {
+	public String getComposer_DiedDate() {
 		return composer_DiedDate;
 	}
-	public void setComposer_DiedDate(Date composer_DiedDate) {
+	public void setComposer_DiedDate(String composer_DiedDate) {
 		this.composer_DiedDate = composer_DiedDate;
 	}
-	public Date getCreated_On() {
+	public String getCreated_On() {
 		return created_On;
 	}
-	public void setCreated_On(Date created_On) {
+	public void setCreated_On(String created_On) {
 		this.created_On = created_On;
 	}
-	public Date getUpdated_On() {
+	public String getUpdated_On() {
 		return updated_On;
 	}
-	public void setUpdated_On(Date updated_On) {
+	public void setUpdated_On(String updated_On) {
 		this.updated_On = updated_On;
 	}
 	public boolean isComposer_DeletedFlag() {

@@ -9,7 +9,6 @@ import javax.persistence.Id;
 @Entity
 public class User_Master {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int user_ID;
 	private String user_Password;
 	private int created_By,updated_By;

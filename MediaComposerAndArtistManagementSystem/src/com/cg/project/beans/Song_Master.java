@@ -20,9 +20,8 @@ public class Song_Master {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int song_ID;
-	private int created_By,updated_By;
+	private int created_By,updated_By,song_Duration;
 	private String song_Name;
-	private Date song_Duration;
 	private String created_On,updated_On;
 	private boolean song_DeletedFlag;
 	@Embedded
@@ -35,8 +34,23 @@ public class Song_Master {
 	}
 	
 	
+	public Song_Master(int created_By, int updated_By, int song_Duration,
+			String song_Name, Artist_Song_Assoc artist,
+			Composer_Song_Assoc composer) {
+		super();
+		this.created_By = created_By;
+		this.updated_By = updated_By;
+		this.song_Duration = song_Duration;
+		this.song_Name = song_Name;
+		this.artist = artist;
+		this.composer = composer;
+		setCreated_On();
+		setUpdated_On();
+	}
+
+
 	public Song_Master(int song_ID, int created_By, int updated_By,
-			String song_Name, Date song_Duration, boolean song_DeletedFlag,
+			String song_Name, int song_Duration, boolean song_DeletedFlag,
 			Artist_Song_Assoc artist, Composer_Song_Assoc composer) {
 		super();
 		this.song_ID = song_ID;
@@ -94,10 +108,10 @@ public class Song_Master {
 	public void setSong_Name(String song_Name) {
 		this.song_Name = song_Name;
 	}
-	public Date getSong_Duration() {
+	public int getSong_Duration() {
 		return song_Duration;
 	}
-	public void setSong_Duration(Date song_Duration) {
+	public void setSong_Duration(int song_Duration) {
 		this.song_Duration = song_Duration;
 	}
 	public String getCreated_On() {
@@ -135,6 +149,8 @@ public class Song_Master {
 	public void setComposer(Composer_Song_Assoc composer) {
 		this.composer = composer;
 	}
+
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -146,8 +162,7 @@ public class Song_Master {
 		result = prime * result
 				+ ((created_On == null) ? 0 : created_On.hashCode());
 		result = prime * result + (song_DeletedFlag ? 1231 : 1237);
-		result = prime * result
-				+ ((song_Duration == null) ? 0 : song_Duration.hashCode());
+		result = prime * result + song_Duration;
 		result = prime * result + song_ID;
 		result = prime * result
 				+ ((song_Name == null) ? 0 : song_Name.hashCode());
@@ -156,6 +171,8 @@ public class Song_Master {
 				+ ((updated_On == null) ? 0 : updated_On.hashCode());
 		return result;
 	}
+
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -184,10 +201,7 @@ public class Song_Master {
 			return false;
 		if (song_DeletedFlag != other.song_DeletedFlag)
 			return false;
-		if (song_Duration == null) {
-			if (other.song_Duration != null)
-				return false;
-		} else if (!song_Duration.equals(other.song_Duration))
+		if (song_Duration != other.song_Duration)
 			return false;
 		if (song_ID != other.song_ID)
 			return false;
@@ -205,15 +219,18 @@ public class Song_Master {
 			return false;
 		return true;
 	}
+
+
 	@Override
 	public String toString() {
 		return "Song_Master [song_ID=" + song_ID + ", created_By=" + created_By
-				+ ", updated_By=" + updated_By + ", song_Name=" + song_Name
-				+ ", song_Duration=" + song_Duration + ", created_On="
+				+ ", updated_By=" + updated_By + ", song_Duration="
+				+ song_Duration + ", song_Name=" + song_Name + ", created_On="
 				+ created_On + ", updated_On=" + updated_On
 				+ ", song_DeletedFlag=" + song_DeletedFlag + ", artist="
 				+ artist + ", composer=" + composer + "]";
 	}
+	
 	
 	
 	
